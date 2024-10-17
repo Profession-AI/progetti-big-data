@@ -66,5 +66,3 @@ Gli insights ottenuti dall'analisi esplorativa e dalla classificazione permetter
 ## Conclusioni
 
 Il progetto offre a **Wikimedia** un potente strumento di **analisi dati** e **classificazione automatica** per migliorare la gestione dei propri contenuti. Attraverso l'utilizzo di tecniche avanzate di **data science** e **machine learning**, Wikimedia sarà in grado di ottimizzare la propria infrastruttura informativa e offrire un servizio di qualità superiore agli utenti di tutto il mondo.
-
-# Modalità di consegna: link pubblico al notebook Databricks
