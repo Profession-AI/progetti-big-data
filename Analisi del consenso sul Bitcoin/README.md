@@ -16,7 +16,7 @@ Dopo l'analisi del sentiment, è interessante valutare l'engagement generato dai
 - **I tweet negativi ricevono più interazioni (risposte) rispetto ai tweet positivi?** Sarà condotta un'analisi simile confrontando il numero medio di risposte tra tweet positivi e negativi, per vedere quale tipo di sentiment provoca una discussione più accesa.
 
 Per aggiungere ulteriore profondità all'analisi, esplorerai la relazione tra la **variazione del sentiment** e la **variazione del valore del Bitcoin**. A tal fine:
-- Reperirai lo **storico del prezzo del Bitcoin (BTC/USD)** da fonti affidabili (es. Yahoo Finance).
+- Reperirai lo **storico del prezzo del Bitcoin (BTC/USD)** [da qui](https://github.com/Profession-AI/progetti-big-data/raw/refs/heads/main/Analisi%20del%20consenso%20sul%20Bitcoin/BTC-USD.csv).
 - Confronterai le variazioni del sentiment giornaliero con le variazioni del prezzo del Bitcoin, cercando di individuare correlazioni significative.
 
 Questo approccio ti permetterà di rispondere alla domanda: **Il sentiment pubblico verso il Bitcoin ha un'influenza sul prezzo della criptovaluta?** O viceversa, **i cambiamenti di prezzo influenzano il sentiment sui social media?**
