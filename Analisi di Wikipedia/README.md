@@ -34,23 +34,30 @@ L'analisi consentirà anche di ottenere preziosi insights sui contenuti di Wikip
 
 ### Caricamento dei Dati
 
-
 Il dataset è salvato su S3 e reperibile al seguente link:  https://proai-datasets.s3.eu-west-3.amazonaws.com/wikipedia.csv
 
 Utilizzando un framework distribuito come **Databricks**, i dati vengono processati in modo efficiente, partendo da un **Pandas DataFrame** per essere successivamente convertiti in un **Spark DataFrame** e salvati come una tabella chiamata "Wikipedia".
 
-Per poter caricare il dataframe e trasformarlo in una table basta eseguire su Notebook Databricks le seguenti righe di codice: 
+Per poter caricare il dataframe e trasformarlo in una table basta eseguire su Notebook Databricks le seguenti celle: 
 
 ```python
-!wget https://proai-datasets.s3.eu-west-3.amazonaws.com/wikipedia.csv
-import pandas as pd
-dataset = pd.read_csv('/databricks/driver/wikipedia.csv')
-spark_df = spark.createDataFrame(dataset)
-spark_df = spark_df.drop("Unnamed: 0")
-spark_df.write.saveAsTable("wikipedia")
+%sql
+CREATE CATALOG IF NOT EXISTS my_catalog;
+CREATE SCHEMA  IF NOT EXISTS my_catalog.raw;
+CREATE VOLUME  IF NOT EXISTS my_catalog.raw.datasets
 ```
 
-N.B. Durante il loading del dataset, ci appoggiamo ad un dataframe Pandas. Questa non è una procedura comune e del tutto corretta. In questo caso ci permette di leggere correttamente (superando con poso sforzo il limite dei separator) i dati con cui definire un DataFrame Spark e una Table 'Wikipedia'. 
+```python
+%sh
+mkdir -p /Volumes/my_catalog/raw/datasets
+curl -L "https://proai-datasets.s3.eu-west-3.amazonaws.com/wikipedia.csv" \
+  -o /Volumes/my_catalog/raw/datasets/wikipedia.csv
+```
+
+```python
+path = "/Volumes/my_catalog/raw/datasets/wikipedia.csv"
+df = spark.read.csv(path, header=True, inferSchema=True)
+```
 
 ## Risultati Attesi
 
