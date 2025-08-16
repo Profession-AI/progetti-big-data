@@ -37,8 +37,7 @@ Questa analisi fornirà uno strumento utile per decisioni aziendali data-driven,
 ### VINCOLI
 Per questo progetto dovrai sfruttare PySpark e i suoi vari strumenti, puoi lavorare con PySpark in cloud gratuitamente utilizzando [DataBricks Free](https://www.databricks.com/learn/free-edition)
 
-Per poter caricare il dataframe e trasformarlo in una table puoi usare un Volume di DataBricks
-
+Per poter caricare il dataframe e trasformarlo in una table puoi usare un Volume di DataBricks.
 Su Notebook Databricks esegui questo codice in celle separate:
 
 ```python
@@ -52,7 +51,7 @@ CREATE VOLUME  IF NOT EXISTS my_catalog.raw.datasets
 %sh
 mkdir -p /Volumes/my_catalog/raw/datasets
 curl -L "https://proai-datasets.s3.eu-west-3.amazonaws.com/bitcoin_tweets.csv" \
-  -o /Volumes/my_catalog/raw/datasets/bitcoin_tweets.cs
+  -o /Volumes/my_catalog/raw/datasets/bitcoin_tweets.csv
 ```
 
 ```python
