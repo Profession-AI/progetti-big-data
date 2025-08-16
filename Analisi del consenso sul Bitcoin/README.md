@@ -35,20 +35,28 @@ Questa analisi fornirà uno strumento utile per decisioni aziendali data-driven,
 ### [Link al dataset](https://proai-datasets.s3.eu-west-3.amazonaws.com/bitcoin_tweets.csv)
 
 ### VINCOLI
-Per questo progetto dovrai sfruttare PySpark e i suoi vari strumenti, puoi lavorare con PySpark in cloud gratuitamente utilizzando [DataBricks Community](https://community.cloud.databricks.com/login.html)
+Per questo progetto dovrai sfruttare PySpark e i suoi vari strumenti, puoi lavorare con PySpark in cloud gratuitamente utilizzando [DataBricks Free](https://www.databricks.com/learn/free-edition)
 
-Per poter caricare il dataframe e trasformarlo in una table basta eseguire 
+Per poter caricare il dataframe e trasformarlo in una table puoi usare un Volume di DataBricks
 
----
-
-su Notebook Databricks le seguenti righe di codice:
+Su Notebook Databricks esegui questo codice in celle separate:
 
 ```python
-!wget https://proai-datasets.s3.eu-west-3.amazonaws.com/bitcoin_tweets.csv
-
-import pandas as pd
-dataset = pd.read_csv('/databricks/driver/bitcoin_tweets.csv', delimiter=";")
-
-spark_df = spark.createDataFrame(dataset)
-spark_df.write.saveAsTable("bitcoin_tweets")
+%sql
+CREATE CATALOG IF NOT EXISTS my_catalog;
+CREATE SCHEMA  IF NOT EXISTS my_catalog.raw;
+CREATE VOLUME  IF NOT EXISTS my_catalog.raw.datasets
 ```
+
+```python
+%sh
+mkdir -p /Volumes/my_catalog/raw/datasets
+curl -L "https://proai-datasets.s3.eu-west-3.amazonaws.com/bitcoin_tweets.csv" \
+  -o /Volumes/my_catalog/raw/datasets/bitcoin_tweets.cs
+```
+
+```python
+path = "/Volumes/my_catalog/raw/datasets/bitcoin_tweets.csv"
+df = spark.read.csv(path, header=True, inferSchema=True)
+```
+
